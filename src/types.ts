@@ -15,3 +15,4 @@ export type ModelListType = {
   nextOffset: string;
   results: ModelType[];
 };
+

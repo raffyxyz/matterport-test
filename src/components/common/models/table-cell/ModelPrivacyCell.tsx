@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { useQueryParam } from "@/states/useQueryParam";
+import { UpdatePrivacyResponse } from "@/types/update-privacy-types";
 
 interface ModelPrivacyCellProps {
   currentStatus: "active" | "inactive" | string;
@@ -39,14 +40,14 @@ export const ModelPrivacyCell: FC<ModelPrivacyCellProps> = ({
       id: string;
       privacy: "public" | "private" | string;
     }) =>
-      await client.request<unknown>(updateModelPrivacy, {
+      await client.request<UpdatePrivacyResponse>(updateModelPrivacy, {
         modelId: args.id,
         visibility: args.privacy,
       }),
     onError: () => {
       console.error("Error in updating privacy.");
     },
-    onSettled: async (data) => {
+    onSettled: async (data: UpdatePrivacyResponse | undefined) => {
       if (data?.errors) {
         toast.error(data?.errors[0]?.message);
       }
