@@ -51,6 +51,8 @@ function App() {
     return <p>Loading...</p>;
   }
 
+  console.log("Data:", data);
+
   return (
     <>
       <ModelsTable data={data?.models?.results} />
