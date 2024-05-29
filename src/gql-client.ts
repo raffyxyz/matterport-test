@@ -13,7 +13,7 @@ export const client = new GraphQLClient(
   import.meta.env.VITE_MATTERPORT_API_ENDPOINT!,
   {
     credentials: `include`,
-    mode: `cors`,
+    mode: `no-cors`,
     headers: { Authorization: `Basic ${base64Credentials}` },
   }
 );
